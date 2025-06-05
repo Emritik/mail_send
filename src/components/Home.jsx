@@ -43,6 +43,30 @@ const Home = () => {
   const handleFilesUpload = (e) => {
     setFile(e.target.files[0]);
   }
+    const templateParams = {
+      to_email: email,
+      subject: "Testing Data",
+      message: JSON.stringify(data,null,2)
+    };
+
+    emailjs
+      .send(
+        "service_*******", //serviceID
+        "template_******", //templateID
+        templateParams,
+        "***********" //user public id
+      )
+      .then(
+        (response) => {
+          console.log("SUCCESS!", response.status, response.text);
+          alert("Email sent successfully!");
+        },
+        (err) => {
+          console.error("FAILED...", err);
+          alert("Failed to send email.");
+        }
+      );
+  };
 
   return (
     <div className="p-4">

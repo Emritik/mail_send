@@ -1,4 +1,4 @@
-# React + Vite
+# Sending mails to the user using emailJS module.
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
