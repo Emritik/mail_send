@@ -1,64 +1,43 @@
 import { useState, useEffect } from "react"
 import parserdata from "papaparse"
-import emailjs from "emailjs-com";
+// import emailjs from "emailjs-com";
 
 
 const Home = () => {
-  const [data, setData] = useState([]);
-  const [isOpen, setIsOpen] = useState(false);
-  const [email, setEmail] = useState("");
-  const [file, setFile] = useState();
-  const [formData, setFormData] = useState([
-    file= "",
-    email= "",
-  ])
+  const [data, setData] = useState([])
+  const [isOpen, setIsOpen] = useState(false)
+  const [email, setEmail] = useState("")
+  const [file, setFile] = useState()
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("src\\Datafile.csv");
-        const text = await response.text();
-        const result = parserdata.parse(text, { header: true });
-        setData(result.data);
-        // console.log(result.data);
+        const response = await fetch("src\\Datafile.csv")
+        const text = await response.text()
+        const result = parserdata.parse(text, { header: true })
+        setData(result.data)
       } catch (error) {
-        console.error("Error Fetching CSV: ", error);
+        console.error("Error Fetching CSV: ", error)
       }
-    };
-    fetchData();
-  }, []);
-
-  const handleToggle = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const handleSubmit = () => {
-    setFormData({
-      file: file,
-      email: email,
-    });
-    console.log(formData)
-    console.log(file)
-    
-    try {
-      const response = await fetch('src\\send_mail.php', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-  
-      if (response.ok) {
-        alert('Email sent successfully!');
-        // You can redirect the user or perform any other action here
-      } else {
-        alert('Error sending email!');
-      }
-    } catch (error) {
-      console.error('Error sending email:', error);
-      alert('Error sending email!');
     }
-  };
+    fetchData()
+  }, [])
+
+  const handleToggle = async () => {
+    setIsOpen(!isOpen);
+  }
+
+  const handleSubmit = async () => {
+
+    const formData = new FormData();
+    formData.append("email", email);
+    const response = await fetch("http://localhost/backend/send_mail.php", {
+      method: "POST",
+      body: formData,
+    });
+
+    const result = await response.text();
+    setStatus(result);
+    console.log(result);
   };
 
   const handleFilesUpload = (e) => {
@@ -95,7 +74,6 @@ const Home = () => {
             {isOpen ? "X" : "Send Email"}
           </button>
         </div>
-
         {isOpen && (
           <div className=" w-2/5 mt-8 ml-96 p-4 bg-gray-100 rounded-xl shadow-md">
             <p className="mb-4 text-gray-700 text-xl font-semibold">
@@ -108,6 +86,7 @@ const Home = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
+            <input type="file" placeholder="select your file" onChange={handleFilesUpload} />
             <button
               onClick={handleSubmit}
               className="w-2/7 ml-4 bg-gradient-to-r from-sky-500 via-pink-400 to-indigo-500 text-xl font-bold text-white py-2 rounded-lg "
@@ -118,7 +97,7 @@ const Home = () => {
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
 export default Home;
