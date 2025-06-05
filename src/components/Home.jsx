@@ -37,10 +37,10 @@ const Home = () => {
 
     emailjs
       .send(
-        "service_qjtwajd", 
-        "template_15ilpp2", 
+        "service_*******", //serviceID
+        "template_******", //templateID
         templateParams,
-        "6px4AzQ4SSknw-orH" 
+        "***********" //user public id
       )
       .then(
         (response) => {
