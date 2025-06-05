@@ -7,7 +7,11 @@ const Home = () => {
   const [data, setData] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [email, setEmail] = useState("");
-
+  const [file, setFile] = useState();
+  const [formData, setFormData] = useState([
+    file= "",
+    email= "",
+  ])
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -28,31 +32,38 @@ const Home = () => {
   };
 
   const handleSubmit = () => {
-
-    const templateParams = {
-      to_email: email,
-      subject: "Testing Data",
-      message: JSON.stringify(data,null,2)
-    };
-
-    emailjs
-      .send(
-        "service_qjtwajd", 
-        "template_15ilpp2", 
-        templateParams,
-        "6px4AzQ4SSknw-orH" 
-      )
-      .then(
-        (response) => {
-          console.log("SUCCESS!", response.status, response.text);
-          alert("Email sent successfully!");
+    setFormData({
+      file: file,
+      email: email,
+    });
+    console.log(formData)
+    console.log(file)
+    
+    try {
+      const response = await fetch('src\\send_mail.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
         },
-        (err) => {
-          console.error("FAILED...", err);
-          alert("Failed to send email.");
-        }
-      );
+        body: JSON.stringify(formData),
+      });
+  
+      if (response.ok) {
+        alert('Email sent successfully!');
+        // You can redirect the user or perform any other action here
+      } else {
+        alert('Error sending email!');
+      }
+    } catch (error) {
+      console.error('Error sending email:', error);
+      alert('Error sending email!');
+    }
   };
+  };
+
+  const handleFilesUpload = (e) => {
+    setFile(e.target.files[0]);
+  }
 
   return (
     <div className="p-4">
