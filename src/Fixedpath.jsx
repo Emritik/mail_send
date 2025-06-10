@@ -12,19 +12,26 @@ const Fixedpath = () => {
   const [email, setEmail] = useState("");
   const [selectedFiles, setSelectedFiles] = useState([]);
 
-  useEffect(() => {
-    const uploadFile = async () => {
-      const headers = Object.keys(Data[0]).join(",") + "\n";
-      const rows = Data.map((obj) => Object.values(obj).join(",")).join("\n");
-      const csvContent = headers + rows;
-      const blob = new Blob([csvContent], { type: "text/csv" });
-      await storeFileInIndexedDB("revenue-2025.csv", blob);
-    };
-    uploadFile();
-  }, []);
+  const filesObject = [
+    {
+      "data": Data,
+      "type": "text/csv",
+      "filename": "revenue.csv"
+    },
+    {
+      "data": CopyData,
+      "type": "text/csv",
+      "filename": "copy.csv"
+    }
+  ]
 
   const handleToggle = async () => {
     setIsOpen(!isOpen);
+    const headers = Object.keys(Data[0]).join(",") + "\n";
+    const rows = Data.map((obj) => Object.values(obj).join(",")).join("\n");
+    const csvContent = headers + rows;
+    const blob = new Blob([csvContent], { type: "text/csv" });
+    await storeFileInIndexedDB("revenue-2025.csv", blob);
   };
 
   const handleSubmit = async (e) => {
