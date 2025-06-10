@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react"
 import parserdata from "papaparse"
-// import emailjs from "emailjs-com";
-
 
 const Home = () => {
   const [data, setData] = useState([])
@@ -28,45 +26,15 @@ const Home = () => {
 
   const handleSubmit = async () => {
 
-    const formData = new FormData();
-    formData.append("email", email);
-    const response = await fetch("http://localhost/backend/send_mail.php", {
-      method: "POST",
-      body: formData,
-    });
 
-    const result = await response.text();
-    setStatus(result);
-    console.log(result);
   };
 
   const handleFilesUpload = (e) => {
     setFile(e.target.files[0]);
   }
-    const templateParams = {
-      to_email: email,
-      subject: "Testing Data",
-      message: JSON.stringify(data,null,2)
-    };
+  
 
-    emailjs
-      .send(
-        "service_*******", //serviceID
-        "template_******", //templateID
-        templateParams,
-        "***********" //user public id
-      )
-      .then(
-        (response) => {
-          console.log("SUCCESS!", response.status, response.text);
-          alert("Email sent successfully!");
-        },
-        (err) => {
-          console.error("FAILED...", err);
-          alert("Failed to send email.");
-        }
-      );
-  };
+  
 
   return (
     <div className="p-4">
