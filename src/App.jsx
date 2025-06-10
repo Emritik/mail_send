@@ -1,11 +1,13 @@
-import Home from "./Home"
+import Fixedpath from "./Fixedpath";
+// import Home from "./Home"
 // import Data from './components/Data'
 
 function App() {
 
   return (
-    <Home />
+    // <Home />
     // <Data />
+    <Fixedpath />
   );
 }
 

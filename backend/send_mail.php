@@ -19,10 +19,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         try {
             // Server settings
             $mail->isSMTP();
-            $mail->Host = 'smtp.gmail.com'; // or your mail server
+            $mail->Host = 'smtp.gmail.com'; 
             $mail->SMTPAuth = true;
             $mail->Username = 'noreply.cogmac@gmail.com';
-            $mail->Password = 'ughzqlbdcseqxqsq'; // Use App password for Gmail
+            $mail->Password = 'ughzqlbdcseqxqsq';
             $mail->SMTPSecure = 'tls';
             $mail->Port = 587;
 
