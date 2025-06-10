@@ -1,14 +1,14 @@
 [
-  { "Month-Year": "January-2025", "Revenue": 0 },
-  { "Month-Year": "February-2025", "Revenue": 3600 },
-  { "Month-Year": "March-2025", "Revenue": 7168 },
-  { "Month-Year": "April-2025", "Revenue": 723 },
-  { "Month-Year": "May-2025", "Revenue": 8407 },
-  { "Month-Year": "June-2025", "Revenue": 874 },
-  { "Month-Year": "July-2025", "Revenue": 12 },
-  { "Month-Year": "August-2025", "Revenue": 7580 },
-  { "Month-Year": "September-2025", "Revenue": 0 },
-  { "Month-Year": "October-2025", "Revenue": 157 },
-  { "Month-Year": "November-2025", "Revenue": 0 },
-  { "Month-Year": "December-2025", "Revenue": 9783 }
+  { "Month-Year": "January-2024", "Revenue": 0 },
+  { "Month-Year": "February-2024", "Revenue": 3600 },
+  { "Month-Year": "March-2024", "Revenue": 7168 },
+  { "Month-Year": "April-2024", "Revenue": 723 },
+  { "Month-Year": "May-2024", "Revenue": 8407 },
+  { "Month-Year": "June-2024", "Revenue": 874 },
+  { "Month-Year": "July-2024", "Revenue": 12 },
+  { "Month-Year": "August-2024", "Revenue": 7580 },
+  { "Month-Year": "September-2024", "Revenue": 0 },
+  { "Month-Year": "October-2024", "Revenue": 157 },
+  { "Month-Year": "November-2024", "Revenue": 0 },
+  { "Month-Year": "December-2024", "Revenue": 9783 }
 ]
