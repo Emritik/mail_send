@@ -1,9 +1,11 @@
-import Home from "./components/Home"
+import Home from "./Home"
+// import Data from './components/Data'
 
 function App() {
 
   return (
     <Home />
+    // <Data />
   );
 }
 
