@@ -7,6 +7,7 @@ import {
   getFileFromIndexedDB,
   deleteFileFromIndexedDB,
 } from "./utils/db";
+import { toast } from "react-toastify";
 
 const Fixedpath = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -45,14 +46,16 @@ const Fixedpath = () => {
     e.preventDefault();
 
     if (index === undefined || index === null) {
-      alert("No dataset selected.");
+      // alert("No dataset selected.");
+      toast.warning("No Dataset selected.")
       return;
     }
 
     const { type, filename } = filesObject[index];
     const blob = await getFileFromIndexedDB(filename);
     if (!blob) {
-      alert("File not found in IndexedDB.");
+      toast.error("File not found in IndexedDB.")
+      // alert("File not found in IndexedDB.");
       return;
     }
 
@@ -72,13 +75,15 @@ const Fixedpath = () => {
           },
         }
       );
-      alert(res.data.message);
+      toast.success(res.data.message)
+      // alert(res.data.message);
       await deleteFileFromIndexedDB(filename);
       console.log("File deleted from IndexedDB");
       setIsOpen(null);
       setEmail("");
     } catch (err) {
-      alert("Error sending email");
+      // alert("Error sending email");
+      toast.error("Error sending email");
       console.error(err);
     }
   };
