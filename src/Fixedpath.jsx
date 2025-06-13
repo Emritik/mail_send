@@ -39,6 +39,7 @@ const Fixedpath = () => {
     // console.log(rows)
     const content = headers + rows;
     const blob = new Blob([content], { type: type });
+    console.log(blob)
     await storeFileInIndexedDB(filename, blob);
   };
 
@@ -53,6 +54,7 @@ const Fixedpath = () => {
 
     const { type, filename } = filesObject[index];
     const blob = await getFileFromIndexedDB(filename);
+    console.log(blob)
     if (!blob) {
       toast.error("File not found in IndexedDB.")
       // alert("File not found in IndexedDB.");
@@ -60,7 +62,7 @@ const Fixedpath = () => {
     }
 
     const file = new File([blob], filename, { type });
-
+    console.log("file is : " + file)
     const formData = new FormData();
     formData.append("email", email);
     formData.append("attachment", file);

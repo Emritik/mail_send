@@ -30,7 +30,6 @@ const Home = () => {
     e.preventDefault();
 
     const formData = new FormData();
-    // const filequery = document.querySelector("#fileinput");
     formData.append('email', email)
     formData.append('attachment', selectedFiles)
     try {
